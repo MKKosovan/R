@@ -1,0 +1,97 @@
+"NotebookName","Diag","Matrix","CPU","Memory","Hz","RAM","Ranking"
+"Microsoft Surface Book 3 15",15,"IPS","Intel Core i7","256...2000",NA,"16...32",5
+"Lenovo Ideapad L340-15",15.6,"IPS / TN","AMD Athlon / AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel","128...1128",NA,"4...16",4.5
+"Lenovo Legion 5 15",15.6,"IPS / WVA","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core",NA,"60","8...16",4.8
+"Lenovo IdeaPad 5 15",15.6,"IPS / WVA","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i3 / Intel",NA,"60","4...12",4.7
+"Microsoft Surface Book 3 13.5",13.5,NA,"Intel Core i5 / Intel Core i7","256...1000",NA,"8...32",4.7
+"Lenovo IdeaPad 5 14",14,"IPS / TN","AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i5 / Intel Core i7",NA,"60","8...16",4.5
+"ASUS VivoBook 15 X512",15.6,"IPS","Apple M1",NA,"60","8...16",4.6
+"Lenovo IdeaPad Gaming 3 15",15.6,"IPS","AMD Athlon Silver / AMD Ryzen 3 / AMD Ryzen 5",NA,"60","4...12",4.6
+"HUAWEI MateBook D 14""",14,"IPS","AMD Ryzen 5 / Intel Core i5",NA,"60","8...16",4.7
+"Apple MacBook Air 13 Late 2020",13.3,"TN","Intel Core i3 / Intel Core i5 / Intel Core i7",NA,"60","4...16",4.8
+"Acer Aspire 3 A315-23",15.6,"IPS","Intel Core i5 / Intel Core i7",NA,"60...144","8...32",4.8
+"Xiaomi RedmiBook 16"" Ryzen Edition",16.1,"IPS","AMD A9 / Intel Core i3 / Intel Pentium Gold","256...1000",NA,"4...8",4.7
+"HONOR MagicBook Pro",16.1,"IPS","AMD Athlon / AMD Ryzen 3 / Intel Core",NA,"60","4...16",4.5
+"Apple MacBook Pro 13 Late 2020",13.3,"IPS","AMD Athlon Gold / AMD Athlon Silver / AMD Ryzen","128...512",NA,"4...16",4.7
+"ASUS Zenbook 14 UX431",14,"IPS","Intel Core i5",NA,"60","8...16",4.5
+"Lenovo Legion Y540-15",15.6,"IPS","Intel Core i3 / Intel Core i5 / Intel Core i7",NA,"60","8...16",4.6
+"ASUS TUF Gaming FX505",15.6,"IPS","Intel Core i5 / Intel Core i7",NA,"60","4...16",4.6
+"Lenovo Yoga Slim 7 15",15.6,"IPS / TN","Apple M1","256...2000",NA,"8...16",4.7
+"Lenovo IdeaPad C340-14",14,"IPS","Intel Core i5 / Intel Core i7",NA,"60","8...16",4.4
+"HUAWEI MateBook D 15.6""",15.6,"IPS","AMD Ryzen 5",NA,"60","8",4.7
+"Lenovo Yoga Slim 7 14",14,"IPS","Intel Core i3 / Intel Core i5 / Intel Core i7","256...1000",NA,"4...16",4.2
+"MSI GF63 Thin 9SCXR",15.6,"IPS","AMD Athlon / AMD Athlon Silver / AMD Ryzen 3 / AMD Ryzen",NA,"60","4...12",4.7
+"Xiaomi RedmiBook 14""",14,"IPS","AMD Ryzen 3 / AMD Ryzen 5","256...512",NA,"8",4.6
+"Apple MacBook Air 13 Early 2020",13.3,"IPS","AMD Ryzen 5 / AMD Ryzen 7",NA,"60","8...16",4.7
+"ASUS VivoBook 15 A543",15.6,"IPS / TN / WVA","Intel Core i5 / Intel Core i7","256...4000",NA,"8...32",4.9
+"Lenovo Ideapad Gaming L340-15",15.6,"IPS","Intel Core i5 / Intel Core i7",NA,"120...144","8...16",4.6
+"HONOR MagicBook 14",14,"IPS","AMD Athlon Gold / AMD Athlon Silver / AMD Ryzen 3 / AMD Ryzen 5",NA,"60","4...8",4.7
+"Xiaomi Mi Notebook Pro 15.6 GTX",15.6,"IPS","AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i5",NA,"60...144","8...32",4.7
+"ASUS VivoBook 14 M413",14,"TN","Intel Core i7","256...2000",NA,"16...32",4.6
+"Haier A1400",14.1,"IPS","AMD Athlon / AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel","128...1128",NA,"4...16",4.8
+"Apple MacBook Pro 13 Mid 2020",13.3,"IPS","AMD Ryzen 5 / AMD Ryzen 7","512",NA,"8...16",4.8
+"HONOR MagicBook 15",15.6,"IPS / WVA","AMD Athlon / AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7",NA,"60","4...16",4.8
+"Lenovo Legion 7 15",15.6,"IPS / TN / WVA","Intel Pentium Silver",NA,"60","4",4.5
+"Lenovo IdeaPad 3 15",15.6,"TN","AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i5 / Intel Core i7",NA,"60...144","8...16",4.6
+"Lenovo IdeaPad S145",NA,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core",NA,"60","8...16",4.5
+"ASUS VivoBook S15 M533IA",15.6,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core",NA,"60","8...16",4.8
+"Acer Nitro 5 AN515-54",15.6,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i3 / Intel",NA,"60","4...12",4.4
+"MSI GL75 Leopard 10SDK",17.3,"TN","AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i5 / Intel Core i7",NA,"60...120","8...16",4.9
+"ASUS R543",15.6,"IPS / TN","Intel Core i5 / Intel Core i7","256...4000",NA,"8...32",4.4
+"ASUS M509",15.6,"IPS","Apple M1",NA,"60","8...16",4.5
+"Haier U1500",15.6,"IPS","Intel Celeron","64...1064",NA,"4",3.9
+"ASUS TUF Gaming FX506",15.6,"IPS","AMD Ryzen 5 / Intel Core i5",NA,"60","8...16",4.7
+"HP 14s-fq",14,"IPS","Intel Core i7","256...2000",NA,"16...32",4.5
+"ASUS VivoBook 14 K413",14,"IPS / TN","Intel Core i5 / Intel Core i7",NA,"60...144","8...32",4.8
+"ASUS VivoBook Flip 14 TP412",14,"IPS / TN","AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i5 / Intel Core i7",NA,"60...144","6...16",4.8
+"ASUS M570",15.6,"TN","AMD Athlon / AMD Ryzen 3 / Intel Core",NA,"60","4...16",4.5
+"Acer Aspire 3 A315-42",15.6,"IPS","AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i5",NA,"60","8",4.5
+"Acer Swift 1 SF114-33",14,"IPS","Intel Core i5",NA,"60","8...16",4.8
+"Xiaomi Mi Notebook Pro 15.6"" 2020",15.6,"IPS","Intel Core i5 / Intel Core i7","512...1000",NA,"8...16",4.7
+"DELL Vostro 5501",15.6,"IPS","Intel Core i7 / Intel Core i9",NA,"60","32...64",4.9
+"GIGABYTE AERO 17 HDR (RTX 30 Series)",17.3,"IPS","Intel Celeron / Intel Core i3 / Intel Core i5 / Intel Core",NA,"60","4...16",4.6
+"HP 250 G7",15.6,"SVA / TN","AMD Athlon Silver / AMD Ryzen 3 / AMD Ryzen 5",NA,"60","4...16",4.4
+"Lenovo ThinkPad E14",14,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i3 / Intel","128...512",NA,"4...16",4.8
+"Acer Extensa 15 EX215-22",15.6,"TN","Intel Core i7 / Intel Core i9",NA,"60","16...64",4.5
+"HUAWEI MateBook 13",13,"IPS","AMD Athlon / AMD Athlon Gold / AMD Athlon Silver / AMD Ryzen","128...1024",NA,"4...16",4.5
+"ASUS Laptop 15 X509",15.6,"IPS / TN","Intel Celeron / Intel Pentium / Intel Pentium Silver",NA,"60","4",4.5
+"GIGABYTE AERO 15 OLED",15.6,"OLED","Intel Core i7 / Intel Core i9",NA,"60","16...64",5
+"ASUS ROG Zephyrus G14 GA401",14,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core",NA,"60","4...16",4.7
+"ASUS E203",11.6,"TN","Intel Core i3 / Intel Core i5",NA,"60","8",4.4
+"Apple MacBook Pro 16 Late 2019",16,"IPS","Intel Core i5 / Intel Core i7",NA,"144","8...16",4.7
+"Lenovo ThinkBook 15 G2",15.6,"IPS","AMD Ryzen 5 / AMD Ryzen 7",NA,"60","8...16",4.4
+"Acer ASPIRE 5 A514-54",14,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core",NA,"60","4...16",4.6
+"HP PAVILION 15-dk1",15.6,"IPS","Intel Core i5 / Intel Core i7",NA,"60","8",4.7
+"ASUS ZenBook 14 UM431",14,"IPS","Intel Core i5 / Intel Core i7",NA,"144","8...32",4.7
+"Lenovo ThinkBook 14 G2",14,"IPS","Intel Core i7",NA,"144...300","16",5
+"Xiaomi RedmiBook 14"" II Ryzen Edition",14,"IPS","Intel Core i5","256...512",NA,"8...16",4.7
+"ASUS VivoBook S15 S533",15.6,"IPS","Intel Core i3 / Intel Core i5 / Intel Core i7",NA,"60","4...16",4.7
+"ASUS ROG Strix G15 G512",15.6,"IPS","Intel Core i5 / Intel Core i7",NA,"144","16",4.5
+"ASUS ROG Strix G17",17.3,"IPS","AMD A4 / AMD A6 / AMD A9 / AMD Athlon Gold / AMD Athlon Silver",NA,"60","4...8",4.2
+"MSI GP76 Leopard 10",17.3,"IPS","Intel Core i7 / Intel Core i9",NA,"240","16...32",5
+"Lenovo Yoga 530-14",14,"IPS / TN","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i3 / Intel","128...512",NA,"4...16",4.5
+"ASUS PRO P3540",15.6,"IPS / TN","Intel Core i5 / Intel Core i7",NA,"60","8...16",4.7
+"Xiaomi Redmi G Gaming",16.1,"IPS","Intel Core i3 / Intel Core i5 / Intel Core i7",NA,"60","4...16",4.8
+"HP 255 G7",15.6,"SVA / TN","Intel Core i3 / Intel Core i5 / Intel Core i7",NA,"60","4...8",4.4
+"MSI GE66 Raider",15.6,"IPS","Intel Core i7",NA,"240","16",4.2
+"Microsoft Surface Laptop 3 13.5",13.5,NA,"Intel Core i5","500",NA,"4",4.6
+"ASUS VivoBook X543",15.6,"IPS","Intel Pentium Silver",NA,"60","4...8",4.3
+"ASUS ZenBook 14 UX434",14,"IPS / TN","Intel Core i5 / Intel Core i7",NA,"60","8...16",4.7
+"Lenovo ThinkBook 15",15.6,"IPS / WVA","Intel Core i7",NA,"144","16",4.5
+"DELL INSPIRON 3793",17.3,"IPS","AMD A4 / AMD A6 / AMD A9 / AMD E1 / AMD E2 / Intel Celeron",NA,"60","2...8",4.3
+"ASUS TUF Dash FX516",15.6,"IPS / SVA","AMD Ryzen 7",NA,"60","8...16",3.1
+"HP 15-db1",15.6,"LTPS","AMD Athlon / AMD Athlon Gold / AMD Athlon Silver / AMD Ryzen","128...1024",NA,"4...16",4.5
+"HUAWEI MateBook X Pro 2020",13.9,"IPS","Intel Core i7",NA,"144","16",4.7
+"ASUS E410",14,"IPS","AMD Ryzen 7 / AMD Ryzen 9",NA,"120...240","8...32",4.7
+"MSI GF63 Thin 9RCX",15.6,"IPS","Intel Core i7 / Intel Core i9",NA,"240...300","16...32",5
+"MSI Creator 17M A10SD",17.3,"IPS / SVA","Intel Core i5 / Intel Core i7",NA,"60","8",4.6
+"HP 15s-eq1",15.6,"TN","Intel Core i5 / Intel Core i7","256...512",NA,"8...16",4.2
+"ASUS VivoBook X540",15.6,"TN","Intel Celeron / Intel Core i3 / Intel Core i5 / Intel Core",NA,"60","4...16",4.4
+"HP 620",15.6,"IPS","AMD Ryzen 3 / AMD Ryzen 5 / AMD Ryzen 7 / Intel Core i3 / Intel","128...512",NA,"4...16",4.8
+"Getac S400",14,NA,"Intel Core i5","500",NA,"4",4.6
+"Acer Aspire 7 A715-41G",15.6,"IPS","Intel Core i7 / Intel Core i9",NA,"60","16...64",4.8
+"ASUS VivoBook 17 D712",17.3,"IPS","AMD Ryzen 5 / AMD Ryzen 7 / AMD Ryzen 9",NA,"60...120","8...32",4.5
+"MSI GP65 Leopard 10SFK",15.6,"IPS","Intel Celeron / Intel Pentium / Intel Pentium Silver",NA,"60","4",4.9
+"ASUS ROG Zephyrus G GA502",15.6,"IPS","Intel Core i7 / Intel Core i9",NA,"60","16...64",4.5
+"HUAWEI MateBook X",13,"IPS","Intel Core i3 / Intel Core i5 / Intel Core i7","128...1512",NA,"4...16",4.7
+"MSI GS66 Stealth",15.6,"IPS","Intel Core i3 / Intel Core i5",NA,"60","8",4.9

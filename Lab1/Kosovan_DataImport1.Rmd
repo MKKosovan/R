@@ -1,0 +1,131 @@
+---
+title: "Import"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('XML')                 # разбор XML-файлов
+library('RCurl')               # работа с HTML-страницами
+library('rvest')               # работа с DOM сайта
+library('dplyr')               # инструменты трансформирования данных
+library('httr')
+library('stringr')
+
+```
+
+
+```{r}
+
+# URL страницы
+url1 <- 'https://market.yandex.ru/catalog--noutbuki/54544/list?cpa=0&hid=91013&onstock=0&local-offers-first=0#product-108886680'
+url2 <- 'https://market.yandex.ru/catalog--noutbuki/54544/list?cpa=0&hid=91013&onstock=0&page=2&local-offers-first=0#product-108886680'
+#url3 <- 'https://market.yandex.ru/catalog--noutbuki/54544/list?cpa=0&hid=91013&onstock=0&page=3&local-offers-first=0#product-108886680'
+
+links <- c(url1,url2)
+
+data.dir <- './data'
+# создаём директорию для данных, если она ещё не существует:
+if (!file.exists(data.dir)) {
+  dir.create(data.dir)
+}
+
+# создаём файл с логом загрузок, если он ещё не существует:
+log.filename <- './data/download.log'
+if (!file.exists(log.filename)) file.create(log.filename)
+
+
+export <- NULL # Инициализируем пустой дата фрейм для записи
+```
+
+```{r}
+
+
+for(url in links)
+
+{
+
+  html <- GET(url) # читаем HTML страницы
+  
+  # дальше только для функции GET()
+  html <- content(html, 'text', encoding = "UTF-8")
+  class(html)
+  #> [1] "character"
+  # разбираем как html
+  parsedHTML <- htmlParse(html, useInternalNodes = T, encoding = "UTF-8") # для GET()
+  
+  # выбираем все наименования ноутбуков
+  NotebookName <- xpathSApply(parsedHTML, '//span[@data-tid="ce80a508"]',
+   xmlValue)
+  Encoding(NotebookName) <- "UTF-8"
+  NotebookName <- iconv(NotebookName, "latin1", "ASCII", sub="") # Удаляем кириллицу
+  NotebookName <- trimws(NotebookName, which = "both", whitespace = "[ \t\r\n]") # Удаляем пробелы в начале и конце строки
+  
+  # выбираем количественные характеристики ноутбуков
+  
+  temp <- (cbind(
+              xpathSApply(parsedHTML, '//ul[@data-tid="c12dee73 a4da7a3a"]//li[1]', xmlValue) %>% `Encoding<-`("UTF-8"),
+              xpathSApply(parsedHTML, '//ul[@data-tid="c12dee73 a4da7a3a"]//li[2]', xmlValue) %>% `Encoding<-`("UTF-8"),
+              xpathSApply(parsedHTML, '//ul[@data-tid="c12dee73 a4da7a3a"]//li[3]', xmlValue) %>% `Encoding<-`("UTF-8"),
+              xpathSApply(parsedHTML, '//ul[@data-tid="c12dee73 a4da7a3a"]//li[4]', xmlValue) %>% `Encoding<-`("UTF-8"),
+              xpathSApply(parsedHTML, '//ul[@data-tid="c12dee73 a4da7a3a"]//li[5]', xmlValue) %>% `Encoding<-`("UTF-8")
+              ))
+  
+  # Матрица с названием характеристик
+  
+  SpecNames <- cbind(c("Diag", "Matrix", "CPU", "Memory", "Hz", "RAM"), c("Диагональ экрана: ","Тип матрицы экрана: ","Линейка процессора: ","Общий объем накопителей: ","Частота обновления экрана: ","Объем оперативной памяти: "))
+  
+  
+  # Создаём матрицу для хранения импортированных характеристик и заполняем NA
+  Specs <- cbind(rep(NA,length(NotebookName)),rep(NA,length(NotebookName)),rep(NA,length(NotebookName)),rep(NA,length(NotebookName)),rep(NA,length(NotebookName)),rep(NA,length(NotebookName)))
+  colnames(Specs) <-  SpecNames[,1]
+  
+  # Импортируем данные в матрицу
+  
+      for (spec in SpecNames[,1]) # Для каждой характеристики
+      {
+        for (i in 1:5) 
+        {
+          Specs[,spec] <- ifelse(is.na(Specs[,spec]), # Если значение ещё не заполнено
+                          ifelse(
+                          grepl(SpecNames[SpecNames[,1]==spec][2],temp[,i], fixed = TRUE), # Если значение в тэге совпадает с характеристикой
+                          temp[,i][grepl(SpecNames[SpecNames[,1]==spec][2],temp[,i], fixed = TRUE)], # Записываем значение  
+                          NA), # Иначе оставляем NA
+                        Specs[,spec]) # Иначе оставляем значение
+        }
+      }
+  
+      for (i in 1:dim(Specs)[2])
+      {
+        Specs[,i] <- str_remove(Specs[,i],' \"') # Удаляем символы
+        Specs[,i] <- str_remove(Specs[,i],SpecNames[,2][i]) # Удаляем лишние слова из фрейма
+        Specs[,i] <- iconv(Specs[,i], "latin1", "ASCII", sub="") # Удаляем кириллицу
+        Specs[,i] <- trimws(Specs[,i], which = "both", whitespace = "[ \t\r\n]") # Удаляем пробелы в начале и конце строки
+      }
+    
+  
+  Ranking <- as.numeric(xpathSApply(parsedHTML, '//div[@data-tid="9f51f8aa"]', xmlValue)) # Импортируем оценки
+  
+  export <- rbind(export,cbind(NotebookName, Specs, Ranking))   # Матрица для экспорта
+  Sys.sleep(30) # Задержка 30 сек
+  
+  
+}
+
+export <- as.data.frame(export, stringsAsFactors = F)
+export[,2] <- as.numeric(export[,2])
+export[,8] <- as.numeric(export[,8])
+
+
+
+# создаём файл с данными, если он ещё не существует:
+filename <- './data/Import.csv'
+if (!file.exists(filename)) file.create(filename)
+
+# записываем в .csv
+write.csv(export, filename, row.names = F, fileEncoding = "UTF-8") 
+
+# Запись в лог
+write(paste('Файл "Import.csv" записан', Sys.time()), 
+      file = log.filename, append = T)
+```

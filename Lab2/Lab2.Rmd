@@ -1,0 +1,198 @@
+---
+title: "Lab2"
+
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# библиотека для работы с JSON
+library('rjson')
+library("dplyr") # Оператор %>%
+library("installr") # is.empty()
+library("ggplot2") # ggplot
+library('lattice')
+library("tidyverse")
+
+
+```
+
+Первый график постройте на данных по импорту продовольственных товаров в РФ в
+графической системе ggplot2. Данные за период с января 2010 по декабрь 2020 гг.
+необходимо загрузить из базы данных международной торговли UN COMTRADE, как было
+показано в практиках 1-2. Нас интересует эффект от введения продовольственных
+санкций15.
+ Второй график постройте на данных, собранных в упражнении №1, в графической
+системе lattice. Тип графика может быть любым, при этом обязательно должна
+присутствовать разбивка по категориям (например: годы, производители товара, жанры
+фильмов).
+
+
+Товар: цитрусовые, свежие или сушеные, код 0805. График: график динамики
+(временного ряда) суммарной массы поставок в январе-августе по годам. Цветом
+показать три группы стран-поставщиков: страны Таможенного союза, остальные
+страны СНГ и все остальные страны. Пропуски заменить на средние.
+
+
+
+# # Задание 1. Загрузка данных
+```{r}
+# адрес справочника по странам UN COMTRADE
+fileURL <- "http://comtrade.un.org/data/cache/partnerAreas.json"
+# загружаем данные из формата JSON
+reporters <- fromJSON(file = fileURL)
+is.list(reporters)
+
+# соединяем элементы списка построчно
+reporters <- t(sapply(reporters$results, rbind))
+dim(reporters)
+
+# даём столбцам имена
+names(reporters) <- c('State.Code', 'State.Name.En')
+
+# функция, реализующая API (источник: UN COMTRADE)
+source("https://raw.githubusercontent.com/aksyuk/R-data/master/API/comtrade_API.R"
+)
+
+# # ежемесячные данные по импорту масла в РФ за 2010 год
+# # 0805 – код цитрусовые, свежие или сушеные HS
+# s1 <- get.Comtrade(r = 'all', p = "643",
+#  ps = as.character(2010), freq = "M",
+#  rg = '1', cc = '0805',
+#  fmt = "csv")
+# 
+# # записываем выборку за 2010 год в файл
+# write.csv(s1$data, './data/comtrade_2010.csv', row.names = F)
+
+# загрузка данных в цикле
+for (i in 2010:2020) {
+ # таймер для ограничения API: не более запроса в секунду
+ Sys.sleep(5)
+ s1 <- get.Comtrade(r = 'all', p = "643",
+ ps = as.character(i), freq = "M",
+ rg = '1', cc = '0805',
+ fmt="csv")
+ # имя файла для сохранения
+ file.name <- paste('./data/comtrade_', i, '.csv',
+ sep = '')
+ # записать данные в файл
+ write.csv(s1$data, file.name, row.names = F)
+ # вывести сообщение в консоль
+ print(paste('Данные за', i, 'год сохранены в файл',
+ file.name))
+ # сделать запись в лог
+ write(paste('Файл',
+ paste('comtrade_', i, '.csv', sep = ''),
+ 'загружен', Sys.time()),
+ file = './data/download.log', append = T)
+}
+
+
+```
+
+# # обработка данных
+```{r}
+
+# Страны таможенного союза
+EACU_countries <- c( 'Armenia','Belarus', 'Kazakhstan',  'Kyrgyzstan')
+
+# Остальные страны СНГ
+CIS_countries <- c('Azerbaijan', 'Rep. of Moldova', 'Tajikistan', 'Turkmenistan', 'Uzbekistan', 'Ukraine')
+
+# Месяцы с января по август
+months <- month.name[1:8]
+
+
+dataf <- data.frame()
+# Дополняем фрейм данными за 2010-2020 года
+for (i in 2010:2020){
+  data.import <- read.csv(paste('./data/comtrade_', i, '.csv', sep=''), header = TRUE, sep=',')
+  # Заменяем пропуски средним
+  Aver <- mean(data.import$Netweight..kg.[!is.na(data.import$Netweight..kg.)])
+  data.import[is.na(data.import)] <- Aver
+  
+  # Добавляем данные в конец фрейма
+  dataf <- rbind(dataf, data.import)
+}
+
+# Оставляем только нужные столбцы
+dataf <- dataf[, c("Year","Period.Desc.","Reporter","Netweight..kg.")]
+
+# Удаляем год из столбца с месяцами
+dataf[,2] <- gsub("[0-9 ]", "", dataf[,2])
+
+
+
+# Страны Таможенного союза
+dataEACU <- dataf[dataf$Reporter %in% EACU_countries, ]
+# Остальные страны СНГ
+dataCIS <- dataf[dataf$Reporter %in% CIS_countries, ]
+# Все остальные страны
+dataOTH <- dataf[!(dataf$Reporter %in% EACU_countries) & !(dataf$Reporter %in% CIS_countries), ]
+
+
+# Подсчёт суммы поставок для каждого года с января по август
+
+#
+
+Plot.Data <-  data.frame(Year = as.integer(),
+                         Sum = as.numeric(),
+                         CounGroup = as.character(),
+                         stringsAsFactors = F)
+
+
+for (i in 2010:2020){
+# Подсчёт суммы для Таможенного союза для i-ого года с января по август
+  temp <- dataEACU[(dataEACU$Period.Desc. %in% months)&(dataEACU$Year == i),] %>% select(Netweight..kg.)
+  if(!is.empty(temp[,1])) temp <- sum(temp) else temp <- 0
+  Plot.Data <- rbind(Plot.Data, cbind(Year = i, Sum = temp, CounGroup = "EACU"))
+# Подсчёт суммы для СНГ для i-ого года с января по август
+  temp <- dataCIS[(dataCIS$Period.Desc. %in% months)&(dataCIS$Year == i),] %>% select(Netweight..kg.)
+  if(!is.empty(temp[,1])) temp <- sum(temp) else temp <- 0
+  Plot.Data <- rbind(Plot.Data, cbind(Year = i, Sum = temp, CounGroup = "CIS"))
+# Подсчёт суммы для остальных для i-ого года с января по август
+  temp <- dataOTH[(dataOTH$Period.Desc. %in% months)&(dataOTH$Year == i),] %>% select(Netweight..kg.)
+  if(!is.empty(temp[,1])) temp <- sum(temp) else temp <- 0
+  Plot.Data <- rbind(Plot.Data, cbind(Year = i, Sum = temp, CounGroup = "Others"))  
+}
+Plot.Data[,"CounGroup"] <- as.factor(Plot.Data[,"CounGroup"])
+Plot.Data[,"Year"] <- as.integer(Plot.Data[,"Year"])
+Plot.Data[,"Sum"] <- as.integer(Plot.Data[,"Sum"])
+
+```
+
+
+# # Построение графика
+```{r}
+
+
+#png('./plot.png', width=1920, height=1080)
+ggplot(data = Plot.Data, aes(x = Year, y = Sum, group = CounGroup, color = CounGroup)) +
+  geom_line() + geom_point() +
+  scale_color_manual(values = c("red", "green", "blue"),
+                     labels = c('СНГ', 'Таможенный союз', 'Остальные страны'),
+                     name = "Страны-поставщики") +
+  labs(title = "График динамики поставок с января по август",
+       x = "Года", y = "Поставки") +
+  theme_dark()
+ggsave('./plot.png', limitsize = F)
+#dev.off()
+
+```
+
+# # Задание 2
+```{r, echo=FALSE,  include=F}
+df_notebooks <- read.csv('./data/Import.csv', header = TRUE, sep=',')
+
+
+trellis.device(device="png", filename="plot2.png")
+my.plot <-  densityplot( ~ Ranking  | as.factor(Diag), data = df_notebooks,
+ main = 'Распределение рейтинге от диагонали дисплея',
+ xlab = 'Пользовательский рейтинг',
+ ylab = 'Плотность распределения')
+print(my.plot)
+while (!is.null(dev.list()))  dev.off()
+
+```
+
+

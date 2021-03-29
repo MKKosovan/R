@@ -1,0 +1,32 @@
+"Classification","Year","Period","Period.Desc.","Aggregate.Level","Is.Leaf.Code","Trade.Flow.Code","Trade.Flow","Reporter.Code","Reporter","Reporter.ISO","Partner.Code","Partner","Partner.ISO","X2nd.Partner.Code","X2nd.Partner","X2nd.Partner.ISO","Customs.Proc..Code","Customs","Mode.of.Transport.Code","Mode.of.Transport","Commodity.Code","Commodity","Qty.Unit.Code","Qty.Unit","Qty","Alt.Qty.Unit.Code","Alt.Qty.Unit","Alt.Qty","Netweight..kg.","Gross.weight..kg.","Trade.Value..US..","CIF.Trade.Value..US..","FOB.Trade.Value..US..","Flag"
+"HS",2011,201106,"June 2011",4,0,1,"Imports",56,"Belgium",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,475,NA,683,NA,NA,0
+"HS",2011,201108,"August 2011",4,0,1,"Imports",96,"Brunei Darussalam",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,750,NA,1209,NA,NA,0
+"HS",2011,201103,"March 2011",4,0,1,"Imports",97,"EU-28",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,7425,NA,12757,NA,NA,0
+"HS",2011,201106,"June 2011",4,0,1,"Imports",97,"EU-28",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,51099,NA,60821,NA,NA,0
+"HS",2011,201107,"July 2011",4,0,1,"Imports",97,"EU-28",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,1311,NA,1431,NA,NA,0
+"HS",2011,201110,"October 2011",4,0,1,"Imports",97,"EU-28",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,187103,NA,221109,NA,NA,0
+"HS",2011,201111,"November 2011",4,0,1,"Imports",97,"EU-28",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,73605,NA,70951,NA,NA,0
+"HS",2011,201112,"December 2011",4,0,1,"Imports",97,"EU-28",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,63702,NA,71685,NA,NA,0
+"HS",2011,201110,"October 2011",4,0,1,"Imports",191,"Croatia",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,187103,NA,222305,NA,NA,0
+"HS",2011,201111,"November 2011",4,0,1,"Imports",191,"Croatia",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,73605,NA,71318,NA,NA,0
+"HS",2011,201112,"December 2011",4,0,1,"Imports",191,"Croatia",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,18705,NA,21604,NA,NA,0
+"HS",2011,201101,"January 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,486218,NA,499153,NA,NA,0
+"HS",2011,201102,"February 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,655554,NA,596329,NA,NA,0
+"HS",2011,201103,"March 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,479690,NA,447727,NA,NA,0
+"HS",2011,201104,"April 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,458217,NA,455070,NA,NA,0
+"HS",2011,201105,"May 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,303016,NA,260759,NA,NA,0
+"HS",2011,201106,"June 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,167056,NA,133729,NA,NA,0
+"HS",2011,201107,"July 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,105900,NA,99900,NA,NA,0
+"HS",2011,201108,"August 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,98600,NA,94000,NA,NA,0
+"HS",2011,201109,"September 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,32000,NA,45200,NA,NA,0
+"HS",2011,201110,"October 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,42200,NA,65700,NA,NA,0
+"HS",2011,201111,"November 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,96000,NA,101800,NA,NA,0
+"HS",2011,201112,"December 2011",4,0,1,"Imports",398,"Kazakhstan",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,35300,NA,30700,NA,NA,0
+"HS",2011,201103,"March 2011",4,0,1,"Imports",440,"Lithuania",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,7425,NA,12734,NA,NA,0
+"HS",2011,201106,"June 2011",4,0,1,"Imports",440,"Lithuania",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,50559,NA,59807,NA,NA,0
+"HS",2011,201107,"July 2011",4,0,1,"Imports",440,"Lithuania",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,1311,NA,1438,NA,NA,0
+"HS",2011,201112,"December 2011",4,0,1,"Imports",440,"Lithuania",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,2576,NA,3463,NA,NA,0
+"HS",2011,201102,"February 2011",4,0,1,"Imports",458,"Malaysia",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,NA,NA,13179,NA,NA,0
+"HS",2011,201103,"March 2011",4,0,1,"Imports",498,"Rep. of Moldova",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,59,NA,197,NA,NA,0
+"HS",2011,201106,"June 2011",4,0,1,"Imports",616,"Poland",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,552,NA,803,NA,NA,0
+"HS",2011,201103,"March 2011",4,0,1,"Imports",792,"Turkey",NA,643,"Russian Federation",NA,NA,NA,NA,NA,NA,NA,NA,805,"Citrus fruit; fresh or dried",NA,NA,NA,NA,NA,NA,67350,NA,55491,NA,NA,0

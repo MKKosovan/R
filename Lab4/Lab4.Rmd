@@ -1,0 +1,199 @@
+---
+title: "Lab4"
+author: "Mikhail Kosovan"
+date: "05/04/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+## Центральный федеральный округ, любой показатель из раздела «Наука и
+инновации».
+
+```{r, echo = F, include = F}
+# загрузка пакетов
+library('R.utils')               # gunzip() для распаковки архивов 
+library('sp')                    # функция spplot()
+library('ggplot2')               # функция ggplot()
+library('RColorBrewer')          # цветовые палитры
+require('rgdal')                 # функция readOGR()
+library('broom')                 # функция tidy()
+require('dplyr')                 # функция join()
+library('scales')                # функция pretty_breaks()
+library('mapproj')               # проекции для карт
+library('stringi')
+## установка и сборка пакета «gpclib»
+## установить RTools (recommended) отсюда:
+## http://cran.r-project.org/bin/windows/Rtools/
+# install.packages('gpclib', type = 'source')
+library('gpclib')
+library('maptools')
+# разрешить использовать полигональную геометрию, которая защищена лицензией 
+gpclibPermit()
+
+```
+
+# # Загрузка shp файла для Центрального федерального округа
+```{r}
+# посмотреть список файлов распакованного архива
+dir('./data')
+
+Sys.setlocale(locale = "Russian")
+# прочитать данные уровня 4
+Regions <- readOGR("./data/admin_level_4.shp")
+
+# картограмма ЦФО, на которой каждая область залита своим цветом ..........
+# делаем фактор из имён областей (т.е. нумеруем их)
+Regions@data$name_en <- as.factor(Regions@data$name_en)
+
+# Регионы, входящие в Центральный федеральный округ
+CFOarea <- c("Belgorod Oblast","Bryansk Oblast","Vladimir Oblast", "Voronezh Oblast", "Ivanovo Oblast", "Kaluga Oblast",
+                     "Kostroma Oblast", "Kursk Oblast", "Lipetsk Oblast", "Moscow Oblast", "Oryol Oblast", "Ryazan Oblast", "Tambov Oblast",
+                     "Tver Oblast", "Tula Oblast", "Yaroslavl Oblast", "Moscow")
+# Оставляем только те регионы, которые входят в ЦФО
+Regions <- Regions[Regions@data$name_en %in% CFOarea, ]
+
+```
+
+# Импорт данных с Росстата. "Регионы России" из раздела "Наука и инновации"
+```{r}
+
+
+# Загрузка функции для работы с Росстатом
+get_GKSSS <- source("https://raw.githubusercontent.com/nillsondg/r_gks_stat_data/master/gks.R")
+
+# Загрузка данных по приёму, выпуску и защиты в докторантуре
+dataGKSS <- loadGKSData("/bgd/regl/B14_14p/IssWWW.exe/Stg/d03/21-11.htm")
+# Оставляем только регионы входящие в ЦФО и удаяем первую строку (названия столбцов неправильно импортированы)
+dataGKSS <- dataGKSS[4:20,-1]
+# Даём имена столбцам
+colnames(dataGKSS) <- c("name_en",rep(c("2005","2010","2011","2012","2013"),3))
+# Удаляем нумерацию строк
+rownames(dataGKSS) <- c()
+
+# Оставляем столбцы только по приём в докторантуру
+CFOdata2013 <- dataGKSS[,c(1,6)]
+# Заменяем пропущенные значения 0
+CFOdata2013[,2][grep("-",CFOdata2013[,2], fixed = T)] <- 0
+
+# 
+CFOdata2013[,1] <- c("Belgorod Oblast","Bryansk Oblast","Vladimir Oblast", "Voronezh Oblast", "Ivanovo Oblast", "Kaluga Oblast",
+                     "Kostroma Oblast", "Kursk Oblast", "Lipetsk Oblast", "Moscow Oblast", "Oryol Oblast", "Ryazan Oblast", "Tambov Oblast",
+                     "Tver Oblast", "Tula Oblast", "Yaroslavl Oblast", "Moscow")
+
+colnames(CFOdata2013) <-  c("name","admission")
+
+
+CFOdata2010 <- dataGKSS[,c(1,3)]
+CFOdata2010[,2][grep("-",CFOdata2010[,2], fixed = T)] <- 0
+CFOdata2010[,1] <- c("Belgorod Oblast","Bryansk Oblast","Vladimir Oblast", "Voronezh Oblast", "Ivanovo Oblast", "Kaluga Oblast",
+                     "Kostroma Oblast", "Kursk Oblast", "Lipetsk Oblast", "Moscow Oblast", "Oryol Oblast", "Ryazan Oblast", "Tambov Oblast",
+                     "Tver Oblast", "Tula Oblast", "Yaroslavl Oblast", "Moscow")
+colnames(CFOdata2010) <-  c("name","admission")
+
+
+```
+# # Строительство графика за последний доступный год (2013) при помощи spplot
+```{r}
+
+Regions@data <- merge(Regions@data, CFOdata2013,
+                       by.x = 'name_en', by.y = "name", all.x = F, sort = F)
+
+# задаём палитру
+mypalette <- colorRampPalette(c('yellow', 'blue'))
+
+
+# строим картограмму численности населения .....................................
+
+
+ls.lay1 <- list("sp.text", coordinates(Regions), Regions@data$name_en, sort = F)
+ls.lay1[[3]] <- gsub("Moscow Oblast","M Obl",ls.lay1[[3]])
+ls.lay1[[3]] <- gsub("Oblast","",ls.lay1[[3]])
+ls.lay1[[3]] <- gsub("Moscow", "M", ls.lay1[[3]])
+
+
+
+output <- spplot(Regions, 'admission',
+       col.regions = mypalette(30),  # определение цветовой шкалы
+
+       col = 'coral4',               # цвет контурных линий на карте
+       par.settings = list(axis.line = list(col = NA)), # без осей
+      sp.layout = ls.lay1
+)
+
+output
+rm(Regions)
+
+
+```
+
+
+# # Строительство графика за 2010 год при помощи ggplot
+```{r}
+
+
+# Пример 3 #####################################################################
+# Перестроить последний график из примера 3 средствами ggplot2
+
+# прочитать данные уровня 4
+Regions <- readOGR("./data/admin_level_4.shp")
+
+CFOarea <- c("Belgorod Oblast","Bryansk Oblast","Vladimir Oblast", "Voronezh Oblast", "Ivanovo Oblast", "Kaluga Oblast",
+                     "Kostroma Oblast", "Kursk Oblast", "Lipetsk Oblast", "Moscow Oblast", "Oryol Oblast", "Ryazan Oblast", "Tambov Oblast",
+                     "Tver Oblast", "Tula Oblast", "Yaroslavl Oblast", "Moscow")
+
+Regions <- Regions[Regions@data$name_en %in% CFOarea, ]
+
+# создаём столбец-ключ id для связи с другими таблицами
+#  (названия регионов из столбца NAME_1)
+Regions@data$id <- Regions@data$name_en
+    
+# преобразовать SpatialPolygonsDataFrame в data.frame
+Regions.points <- fortify(Regions, region = 'id')
+    
+# добавить к координатам сведения о регионах
+Regions.df <- merge(Regions.points, Regions@data, by = 'id')
+
+# добавляем к координатам значения показателя для заливки
+#  (численность населения из фрейма stat.Regions)
+CFOdata2010$id <- CFOdata2010$name 
+Regions.df <- merge(Regions.df, CFOdata2010[, c('id',
+                                                 'admission')])
+Regions.df$admission <- as.numeric(Regions.df$admission)
+names(Regions.df)
+
+# координаты центров полигонов (для подписей регионов)
+centroids.df <- as.data.frame(coordinates(Regions))
+centroids.df$id <- Regions@data$id
+colnames(centroids.df) <- c('long', 'lat', 'id')
+
+ls.lay1[[3]] <- gsub("Moscow Oblast","M Obl",ls.lay1[[3]])
+ls.lay1[[3]] <- gsub("Oblast","",ls.lay1[[3]])
+ls.lay1[[3]] <- gsub("Moscow", "M", ls.lay1[[3]])
+
+
+
+# создаём график
+gp <- ggplot() + 
+    geom_polygon(data = Regions.df, aes(long, lat, group = group,
+                                        fill = admission)) +
+    geom_path(data = Regions.df, aes(long, lat, group = group), 
+              color = 'coral4') +
+    coord_map(projection = 'gilbert') +
+    scale_fill_distiller(palette = 'OrRd',
+                         direction = 1,
+                         breaks = pretty_breaks(n = 5)) +
+    labs(x = 'Долгота', y = 'Широта', 
+         title = "Приём в докторантуру, человек") +
+    geom_text(data = centroids.df, 
+                       aes(long, lat, label = id))
+# выводим график
+gp
+
+
+
+
+```
